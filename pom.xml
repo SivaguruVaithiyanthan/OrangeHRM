@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>LearningAutomation</groupId>
+  <artifactId>OrangeHRM</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  		<dependencies>
+
+				<!-- SELENIUM MAVEN DEPENDENCY -->
+				<!--https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+				<dependency>
+				    <groupId>org.seleniumhq.selenium</groupId>
+				    <artifactId>selenium-java</artifactId>
+				    <version>4.35.0</version>
+				</dependency>
+				
+				<!-- EXCEL READED MAVEN DEPENDENCY -->
+				<dependency>
+					<groupId>org.apache.poi</groupId>
+					<artifactId>poi-ooxml</artifactId>
+					<version>5.3.0</version>
+				</dependency>
+		
+				<dependency>
+					<groupId>org.apache.poi</groupId>
+					<artifactId>poi</artifactId>
+					<version>5.3.0</version>
+				</dependency>  
+				
+				<!-- DATABASE MAVEN DEPENDENCY -->
+				<dependency>
+					<groupId>org.postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+					<version>42.7.7</version>
+				</dependency>
+				
+				<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+				<dependency>
+				    <groupId>org.testng</groupId>
+				    <artifactId>testng</artifactId>
+				    <version>7.11.0</version>
+				    <scope>test</scope>
+				</dependency>
+  		
+  		</dependencies>
+  
+</project>
