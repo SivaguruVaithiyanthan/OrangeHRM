@@ -68,7 +68,7 @@ public class logintest extends base
 		List<WebElement> navigationSubMenus = navMenu.findElements(By.tagName("li"));
 		for (WebElement element : navigationSubMenus)
 		{
-			System.out.println("Navigation Menus : " + element.getText());
+			System.out.println("Navigation Menus : " + element.getText().trim());
 		}
 	}
 	
@@ -81,8 +81,26 @@ public class logintest extends base
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
 		wait.until(ExpectedConditions.elementToBeClickable(loginObjects.navMenuPIM)).click();
+		wait.until(ExpectedConditions.elementToBeClickable(loginObjects.addEmployee)).click();
 		
+		    for (Map<String , String> Values : valuesOfReadedExcel)
+		    {
+		    	wait.until(ExpectedConditions.visibilityOfElementLocated((By) loginObjects.firstName));
+		    	
+		    	String firstName = Values.get("FirstName");
+		    	String lastName = Values.get("LastName");
+		    	String empID = Values.get("EmpID");
+		    	
+		    	loginObjects.firstName.sendKeys(firstName);
+		    	loginObjects.lastName.sendKeys(lastName);
+		    	loginObjects.empID.sendKeys(empID);
+		    	
+		    	wait.until(ExpectedConditions.elementToBeClickable(loginObjects.saveButton)).click();
+		    }
+    
 	}
+	
+	
 	
 }
 
