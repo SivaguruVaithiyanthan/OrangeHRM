@@ -18,14 +18,28 @@ public class loginPage
 	public WebElement userName;
 	
 	@FindBy(name = "password")
-	private WebElement password;
+	public WebElement password;
 	
 	@FindBy(xpath = "//button[@type='submit']")
-	private WebElement loginButton;
+	public WebElement loginButton;
 	
 	@FindBy(xpath = "//h6[contains(@class,'oxd-topbar-header-breadcrumb')]")
-	private WebElement DashBoard;
+	public WebElement DashBoard;
 	
+	@FindBy(xpath = "//span[text()='PIM']")
+	public WebElement navMenuPIM;
+	
+	@FindBy(xpath = "//a[text() = 'Add Employee']")
+	public WebElement addEmployee;
+	
+	@FindBy(xpath= "//input[@name='firstName']")
+	public WebElement firstName;
+	
+	@FindBy(xpath= "//input[@name='lastName']")
+	public WebElement lastName;
+	
+	@FindBy(xpath= "//input[@name='lastName']")
+	public WebElement empID;
 	
 	public void LoginValidation(String Username , String passWord)
 	{
