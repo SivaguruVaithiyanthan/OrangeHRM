@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-11-11T05:56:49 IST" name="Default suite" finished-at="2025-11-11T05:56:49 IST" duration-ms="116">
+    <groups>
+    </groups>
+    <test started-at="2025-11-11T05:56:49 IST" name="Default test" finished-at="2025-11-11T05:56:49 IST" duration-ms="116">
+      <class name="com.tesNg.packs.basicNG">
+        <test-method signature="tst()[pri:0, instance:com.tesNg.packs.basicNG@413d1baf]" started-at="2025-11-11T05:56:49 IST" name="tst" finished-at="2025-11-11T05:56:49 IST" duration-ms="25" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tst -->
+      </class> <!-- com.tesNg.packs.basicNG -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
