@@ -1,6 +1,7 @@
 package com.testNG.packs;
 
 import com.pages.base.base;
+import com.pages.locators.loginPage;
 import com.pages.utilities.ExcelUtilities;
 
 import java.time.Duration;
@@ -10,64 +11,100 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 
 public class TestNGClassThree extends base
 {
-	public static WebDriverWait wait = null;
-	public static List<Map<String , String>> valuesOfReadedExcel = null;
+	@DataProvider(name = "loginData")
+	public Object[][] providedLoginData()
+	{		
+		return new Object[][]
+		{
+			{"sivagru@gmail.com" , "Test@123"},
+			{"Deepak@gmail.com" , "Test@123"},
+			{"Vijaykumar@gmail.com" , "Test@123"}
+		};
+	}
 	
-	@BeforeSuite
+	@BeforeSuite(alwaysRun = true)
 	public void beforeSuite()
 	{
 		System.out.println("Before Suite: Running once before the test suite.");
 	}
 	
-		   @BeforeTest
+		   @BeforeTest(alwaysRun = true)
 		   public void beforeTest()
-		   {
-           	 valuesOfReadedExcel = ExcelUtilities.ReadExcelData("CommonAccess.xlsx", "AddEmployeeDetails");
+		   {	   
+			   System.out.println("Before Test: Running once before the test suite.");
 		   }
-	
-	              @BeforeClass
+	              @BeforeClass(alwaysRun = true)
 	              public void beforeClass()
 	              {
-	            	  System.out.println("Before Class: Running once before the first test method."); 
-	            	  wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	            	  
+	            	  System.out.println("Before Class: Running once before the first test method.");             	     
 	              }
 	              
-	                    @BeforeMethod
+	                    @BeforeMethod(alwaysRun = true)
 	                    public void beforeMethod()
 	                    {
-	                    	initializeWebBrowser();	 
-	                    	System.out.println("Chrome Browser initialzed Successfully");  
+	                    	System.out.println("Chrome Browser initialzed Successfully..");  
 	                    }
 	                    
-	                         @Test
-	                         public void checkLoginFunctionality()
+	                         @Test(priority = 1 , groups = {"Regression"})
+	                         public void BcheckLoginFunctionality()
 	                         {
-	                        	 driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-	                        	 wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@type='submit']")));
-	                        	 
-	                        	 
+	                        	 System.out.println("Check Login Functioinality B..");              	
+	                         }
+	                         
+	                         @Test(priority = 0, groups = {"Regression" , "Smoke"}, dependsOnMethods = {"BcheckLoginFunctionality"})
+	                         public void AcheckLoginFunctionality()
+	                         {
+	                        	 System.out.println("Check Login Functioinality A..");              	
+	                         }
+	                         
+	                         @Test(priority = 2 , groups = {"Regression" , "Sanity"} , dependsOnMethods = {"AcheckLoginFunctionality"} )
+	                         public void CcheckLoginFunctionality()
+	                         {
+	                        	 System.out.println("Check Login Functioinality Adeiiiiiii..");              	
 	                         }
 	
+	                         @Test(priority = 3 , dataProvider = "loginData", groups = {"Regression" , "Unit"} , enabled = true)
+	                         public void CheckUserDetails(String Username , String password)
+	                         {
+	                        	 System.out.println("Check Login Functioinality Username :" + Username + "Password :" + password);              	
+	                         }
 	
+	                    @AfterMethod(alwaysRun = true)
+	                    public void afterMethod()
+	                    {
+	                    	System.out.println("Chrome Browser closed Successfully..");  
+	                    }
+	                    
+	                @AfterClass(alwaysRun = true)
+	                public void AfterClass()
+	                {
+	                	System.out.println("Executing @AfterClass: Performing cleanup for MyTestClass..");
+	                }
 	
-	
-	
-	
-	@AfterSuite
+	      @AfterTest(alwaysRun = true)
+	      public void bafterTest()
+		   {
+	    	  System.out.println("Executing @AfterTest: Performing cleanup for MyTest.");
+		   }
+	      
+	@AfterSuite(alwaysRun = true)
 	public void afterSuite()
 	{
 		System.out.println("After Suite: Running once After the test suite.");
 	}
-	
 	
 }

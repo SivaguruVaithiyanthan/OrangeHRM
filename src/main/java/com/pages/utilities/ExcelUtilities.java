@@ -10,13 +10,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtilities 
 {
+	@SuppressWarnings("null")
 	public static List<Map<String , String>> ReadExcelData(String FileName , String SheetName)
 	{
 		List<Map<String , String>> readedDatafromExcel = null;
 		
 		try 
 		{
-			FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "ConfigurationFiles\\ExcelFiles\\" + FileName);
+			FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "\\ConfigurationFiles\\ExcelFiles\\" + FileName);
 			try (XSSFWorkbook readExcelFile = new XSSFWorkbook(fileInputStream)) 
 			{
 				XSSFSheet readDataFromSheet = readExcelFile.getSheet(SheetName);
