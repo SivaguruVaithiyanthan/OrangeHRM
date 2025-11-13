@@ -1,5 +1,6 @@
 package com.testNG.packs;
 
+
 import com.pages.base.base;
 import com.pages.locators.loginPage;
 import com.pages.utilities.ExcelUtilities;
@@ -19,6 +20,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -82,6 +84,15 @@ public class TestNGClassThree extends base
 	                         {
 	                        	 System.out.println("Check Login Functioinality Username :" + Username + "Password :" + password);              	
 	                         }
+	                         
+	                         @Test
+	                         @Parameters({"browser", "URL"})
+	                         public void driverWithURL(String BrowserName , String URL)
+	                         {
+	                        	 System.out.println("Browsername :" + BrowserName);
+	                        	 System.out.println("PageURL :" + URL);
+	                         }
+	                         
 	
 	                    @AfterMethod(alwaysRun = true)
 	                    public void afterMethod()
