@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
   <test thread-count="5" name="Test">
+  <parameter name="Name" value="Sivaguruyv@devcare.biz"></parameter>
+  <parameter name="Password" value="Siva@123"></parameter>
+  <parameter name="EmployeeID" value="DEV5421"></parameter>
     <classes>
       <class name="com.testNG.packs.TestNGClassThree">
       	<methods>
-      		<include name="CheckUserDetails"></include>
+      		<include name="loginPage"></include>
       	</methods>
       </class>
     </classes>

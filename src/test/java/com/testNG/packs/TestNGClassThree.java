@@ -27,6 +27,7 @@ import org.testng.annotations.AfterClass;
 
 public class TestNGClassThree extends base
 {
+	public static int count = 0;
 	@DataProvider(name = "loginData")
 	public Object[][] providedLoginData()
 	{		
@@ -93,6 +94,21 @@ public class TestNGClassThree extends base
 	                        	 System.out.println("PageURL :" + URL);
 	                         }
 	                         
+	                         @Test( invocationCount = 5)
+	                         public void loginPageRegression()
+	                         {
+	                        	 count++;
+	                        	 System.out.println("Login page Tested at : " + count + " Times");
+	                         }
+	                         
+	                         @Test( invocationCount = 5 , timeOut = 3000)
+	                         @Parameters( {"Name" , "EmployeeID" , "Password"} )
+	                         public void loginPage( String userName , String passWord , String employeeID) throws InterruptedException
+	                         {
+	                        	 System.out.println("User of : " + userName + " login Successfully");
+	                        	 Thread.sleep(5000);
+	                        	 System.out.println("TempToken Created : " + passWord.concat(employeeID) );
+	                         }	                         
 	
 	                    @AfterMethod(alwaysRun = true)
 	                    public void afterMethod()
