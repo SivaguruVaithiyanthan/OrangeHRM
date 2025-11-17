@@ -2,6 +2,7 @@ package com.pages.utilities;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,7 @@ public class ExcelUtilities
 	@SuppressWarnings("null")
 	public static List<Map<String , String>> ReadExcelData(String FileName , String SheetName)
 	{
-		List<Map<String , String>> readedDatafromExcel = null;
+		List<Map<String , String>> readedDatafromExcel = new ArrayList<Map<String , String>>();
 		
 		try 
 		{
@@ -25,7 +26,7 @@ public class ExcelUtilities
 				int totalRowsinDB = readDataFromSheet.getPhysicalNumberOfRows();
 				int totalColumnsinDB = readDataFromSheet.getRow(0).getPhysicalNumberOfCells();
 
-				for (int row = 0 ; row < totalRowsinDB ; row ++)
+				for (int row = 1 ; row < totalRowsinDB ; row ++)
 				{
 					Map<String , String> dbReadedValues = new HashMap<String , String>();
 					

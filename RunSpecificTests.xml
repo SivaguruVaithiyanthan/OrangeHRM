@@ -7,7 +7,7 @@
     <classes>
       <class name="com.testNG.packs.TestNGClassThree">
       	<methods>
-      		<include name="loginPage"></include>
+      		<include name="dashBoradElementIsVisible"></include>
       	</methods>
       </class>
     </classes>

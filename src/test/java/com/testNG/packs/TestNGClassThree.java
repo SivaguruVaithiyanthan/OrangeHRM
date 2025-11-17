@@ -1,6 +1,8 @@
 package com.testNG.packs;
 
 
+import com.actions.AnalyzerFiles.retryFunctionality;
+import com.actions.AnalyzerFiles.testFunctionality;
 import com.pages.base.base;
 import com.pages.locators.loginPage;
 import com.pages.utilities.ExcelUtilities;
@@ -108,7 +110,26 @@ public class TestNGClassThree extends base
 	                        	 System.out.println("User of : " + userName + " login Successfully");
 	                        	 Thread.sleep(5000);
 	                        	 System.out.println("TempToken Created : " + passWord.concat(employeeID) );
-	                         }	                         
+	                         }	 
+	                         
+	                         @Test(retryAnalyzer = retryFunctionality.class , invocationCount = 5)
+	                         public void dashBoradElementIsVisible()
+	                         {
+	                        	 System.out.println("Element Failed Mulitple Times Please Check");
+	                         }
+	                         
+	                         @Test
+	                         public void addEmployeeDetails()
+	                         {
+	                        	 System.out.println("Exmployee Details Added.");
+	                         }
+	                         
+	                         @Test (dependsOnMethods = "addEmployeeDetails")
+	                         public void checkNewEmployeeDetais()
+	                         {
+	                        	 System.out.println("Newly Added Employees are Available in he Grid.");
+	                         }
+	                         
 	
 	                    @AfterMethod(alwaysRun = true)
 	                    public void afterMethod()

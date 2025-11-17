@@ -1,4 +1,5 @@
 package com.pages.locators;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,6 +45,14 @@ public class loginPage
 	@FindBy(xpath = "//button[text()=' Save ']")
 	public WebElement saveButton;
 	
+	@FindBy(css = "span[class='oxd-userdropdown-tab']")
+	public WebElement LogoutMain;
+	
+	@FindBy(xpath = "//a[text()='Logout']")
+	public WebElement logOut;
+	
+	public By invalidToastMessage = By.xpath("//p[text()='Invalid credentials']");
+
 	public void LoginValidation(String Username , String passWord)
 	{
 		userName.sendKeys(Username);
