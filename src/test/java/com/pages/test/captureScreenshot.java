@@ -11,15 +11,19 @@ public class captureScreenshot
 {
 	public static String captureScreenShot(WebDriver driver , String nameOftheImage)
 	{
-		String filePathToStoreScreenShot = System.getProperty("user.dir") + "\\ScreenShots" +  nameOftheImage;
+		String filePathToStoreScreenShot = System.getProperty("user.dir") + "\\Screenshot\\" +  nameOftheImage + ".png";
 		
 		File source = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		
 		try
 		{
 			File Destination = new File(filePathToStoreScreenShot);
+			if(Destination.exists())
+			{
+				Destination.delete();
+			}
 			FileUtils.copyFile(source, Destination);
-		}
+		} 
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
