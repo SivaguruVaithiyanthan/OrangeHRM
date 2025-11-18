@@ -5,8 +5,8 @@
     <classes>
       <class name="com.pages.test.logintest">
         <methods>
-          <include name="beforeMethod"/>
           <include name="ValidLogin"/>
+          <include name="beforeMethod"/>
           <include name="dataBaseOutPut"/>
           <include name="closeDriver"/>
           <include name="afterMethod"/>

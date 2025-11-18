@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -32,6 +33,12 @@ public class logintest extends base
 	{
 	   initializeWebBrowser();	   
 	   loginObjects = new loginPage(driver);
+		String titleName = driver.getTitle();
+		String expectedTitleText = "OrangeHRM";	
+		if(titleName.trim() == expectedTitleText.trim())
+		{
+			System.out.println("Page Loaded SuccessFully.");
+		}	
 	}
 	
 		@BeforeTest()
@@ -50,6 +57,7 @@ public class logintest extends base
 			@Test(priority = 1)
 			public void ValidLogin() throws InterruptedException
 			{		
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 				int invalidCount = 0;
 				for (Map<String, String> Values : dataBaseOutPut())
 				{
@@ -57,7 +65,7 @@ public class logintest extends base
 					String passWord = Values.get("passWord");
 				    loginObjects.LoginValidation(userName, passWord);
 				    
-				    if(!checkValidCredentials())
+				    if(!checkValidCredentials(driver))
 				    {
 				    	DasboardValidation();
 				    }
@@ -82,9 +90,13 @@ public class logintest extends base
 				for (WebElement element : navigationSubMenus)
 				{
 					System.out.println("Navigation Menus : " + element.getText().trim());
+					
+					String menu = element.getText().trim();
+					WebElement currentMenu = driver.findElement(By.xpath("//span[text()='"+element.getText().trim()+"']"));
+					currentMenu.click();
+					Thread.sleep(2000);
+					captureScreenshot.captureScreenShot(driver, menu);
 				}
-				
-				afterMethod();
 			}
 			
 			//@Test(priority = 3)
@@ -114,43 +126,45 @@ public class logintest extends base
 				    } 
 			}
 			
-			public boolean checkValidCredentials()
+			public boolean checkValidCredentials(WebDriver driver)
 			{
-				boolean invalidCredToast = false;
-				try
-				{
-					loginObjects = new loginPage(driver);
-					WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated(loginObjects.invalidToastMessage));
-					invalidCredToast = toast.isDisplayed();
-				}
-				catch(Exception ex)
-				{
-					invalidCredToast = false;
-				}
+				boolean invalidCredToast = false;			
+			    try 
+			    {
+			        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));			        
+			        WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated((loginObjects.invalidToastMessage)));
+			        invalidCredToast = toast.isDisplayed();
+			    }
+			    catch (Exception e) 
+			    {
+			        invalidCredToast = false;
+			    }
 				return invalidCredToast;
 			}
 			
+			
+			
 			@AfterMethod
-			public void afterMethod() throws InterruptedException
+			public void afterMethod()
+			{
+				System.out.println("Login Page Validated SuccessFully...");		
+			}
+			
+			@AfterTest
+			public void closeDriver() throws InterruptedException
 			{
 				loginObjects = new loginPage(driver);
 				loginObjects.LogoutMain.click();
 				Thread.sleep(1000);
 				loginObjects.logOut.click();
-				System.out.println("Login Page Validated SuccessFully...");		
-			}
-			
-			@AfterTest
-			public void closeDriver()
-			{
-				driver.quit();	
-				System.out.println("Browser Closed SuccessFully...");
+
 			}
 			
 		@AfterClass
 		public void afterClass()
 		{
-			System.out.println("Total Functionality Tested SuccessFully...");
+			driver.quit();	
+			System.out.println("Browser Closed SuccessFully...");
 		}
 }
 

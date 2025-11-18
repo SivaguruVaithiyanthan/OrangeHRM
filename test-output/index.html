@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\sivaguruvaithy\AppData\Local\Temp\testng-eclipse-1122344774\testng-customsuite.xml</span>
+                    <span>C:\Users\sivaguruvaithy\AppData\Local\Temp\testng-eclipse--1479709329\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -129,15 +129,16 @@
                   <a name="ValidLogin">
                   </a> <!-- ValidLogin -->
                   <span class="method-name">ValidLogin</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//h6[contains(@class,&apos;oxd-topbar-header-breadcrumb&apos;)]&quot;}
+                  <div class="stack-trace">org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found
   (Session info: chrome=142.0.7444.136)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#staleelementreferenceexception
 Build info: version: &apos;4.38.0&apos;, revision: &apos;6b412e825c*&apos;
 System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [31da0b0f58bf8d9f9187641564028374, findElement {value=//h6[contains(@class,&apos;oxd-topbar-header-breadcrumb&apos;)], using=xpath}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.136, chrome: {chromedriverVersion: 142.0.7444.162 (c076baf266c..., userDataDir: C:\Users\sivaguruvaithy\App...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58484}, goog:processID: 11228, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58484/devtoo..., se:cdpVersion: 142.0.7444.136, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 31da0b0f58bf8d9f9187641564028374
+Command: [38939fab4a66e1e806851ad97507b77c, getElementText {id=f.E5DD18949B2E5649AA96285F255C0B09.d.3D1B7EB15F991B4D2A5D827E0F2FD23D.e.34}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.136, chrome: {chromedriverVersion: 142.0.7444.175 (302067f14a4..., userDataDir: C:\Users\sivaguruvaithy\App...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63276}, goog:processID: 16112, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63276/devtoo..., se:cdpVersion: 142.0.7444.136, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[[[ChromeDriver: chrome on windows (38939fab4a66e1e806851ad97507b77c)] -&gt; xpath: //ul[contains(@class,&apos;oxd-main-menu&apos;)]]] -&gt; tag name: li]
+Session ID: 38939fab4a66e1e806851ad97507b77c
 	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
@@ -148,15 +149,10 @@ Session ID: 31da0b0f58bf8d9f9187641564028374
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:557)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:380)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:374)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at jdk.proxy2/jdk.proxy2.$Proxy16.getText(Unknown Source)
-	at com.pages.test.logintest.DasboardValidation(logintest.java:76)
-	at com.pages.test.logintest.ValidLogin(logintest.java:62)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:191)
+	at com.pages.test.logintest.DasboardValidation(logintest.java:92)
+	at com.pages.test.logintest.ValidLogin(logintest.java:70)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -192,7 +188,7 @@ Session ID: 31da0b0f58bf8d9f9187641564028374
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\sivaguruvaithy\AppData\Local\Temp\testng-eclipse-1122344774\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\sivaguruvaithy\AppData\Local\Temp\testng-eclipse--1479709329\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -245,12 +241,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'ValidLogin')
 data.setCell(0, 2, 'com.pages.test.logintest')
-data.setCell(0, 3, 17779);
+data.setCell(0, 3, 56356);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 17 seconds</span>
+              <span class="suite-total-time">Total running time: 56 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -283,24 +279,32 @@ return data;
               </div> <!-- configuration-test before -->
               <div class="configuration-class before">
                 <span class="method-name">setUp</span>
-                <span class="method-start">920 ms</span>
+                <span class="method-start">722 ms</span>
               </div> <!-- configuration-class before -->
+              <div class="configuration-method before">
+                <span class="method-name">beforeMethod</span>
+                <span class="method-start">5150 ms</span>
+              </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">ValidLogin</span>
-                <span class="method-start">11688 ms</span>
+                <span class="method-start">5152 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method before">
-                <span class="method-name">beforeMethod</span>
-                <span class="method-start">11688 ms</span>
-              </div> <!-- configuration-method before -->
               <div class="configuration-method after">
+                <span class="method-name">afterMethod</span>
+                <span class="method-start">70073 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-class after">
+                <span class="method-name">afterClass</span>
+                <span class="method-start">75452 ms</span>
+              </div> <!-- configuration-class after -->
+              <div class="configuration-test after">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">afterMethod</span>
-                <span class="method-start">29473 ms</span>
-              </div> <!-- configuration-method after -->
+                <span class="method-name">closeDriver</span>
+                <span class="method-start">75712 ms</span>
+              </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->
