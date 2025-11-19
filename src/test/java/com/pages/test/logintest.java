@@ -97,11 +97,10 @@ public class logintest extends base {
 
 	}
 
-	// @Test(priority = 3)
-	public void gridActions() {
+	
+	public void AddEmployee() {
 		loginObjects = new loginPage(driver);
-		List<Map<String, String>> valuesOfReadedExcel = ExcelUtilities.ReadExcelData("CommonAccess.xlsx",
-				"AddEmployeeDetails");
+		List<Map<String, String>> valuesOfReadedExcel = ExcelUtilities.ReadExcelData("CommonAccess.xlsx","AddEmployeeDetails");
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -120,6 +119,9 @@ public class logintest extends base {
 			loginObjects.empID.sendKeys(empID);
 
 			wait.until(ExpectedConditions.elementToBeClickable(loginObjects.saveButton)).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='orangehrm-tabs-wrapper']/a[text()='Personal Details']")));
+			
+			
 		}
 	}
 
