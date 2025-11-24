@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.pages.base.base;
 import com.pages.locators.loginPage;
+import com.pages.locators.AddEmployee;
 import com.pages.utilities.ExcelUtilities;
 
 public class AddEmployeeDetails extends base
@@ -29,7 +30,8 @@ public class AddEmployeeDetails extends base
 		wait.until(ExpectedConditions.elementToBeClickable(loginObjects.navMenuPIM)).click();
 		wait.until(ExpectedConditions.elementToBeClickable(loginObjects.addEmployee)).click();
 
-		for (Map<String, String> Values : valuesOfReadedExcel) {
+		for (Map<String, String> Values : valuesOfReadedExcel)
+		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated((By) loginObjects.firstName));
 
 			String firstName = Values.get("FirstName");
@@ -44,6 +46,22 @@ public class AddEmployeeDetails extends base
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='orangehrm-tabs-wrapper']/a[text()='Personal Details']")));
 			
 			List<Map<String, String>> valuesOfReadedExcelAddDetails = ExcelUtilities.ReadExcelData("CommonAccess.xlsx","AddEmployeeDetails");
+			
+			for(Map<String, String> values : valuesOfReadedExcelAddDetails)
+			{
+				String drivinglicenseNumber = values.get("DriverLicenseNumber");
+				String nationality =          values.get("Nationality");
+				String maritalStatus =        values.get("MaritalStatus");
+				String dateofBirth =          values.get("DateofBirth");
+				String gender      =          values.get("Gender");
+				String bloodtype      =       values.get("BloodType");
+				String testField      =       values.get("Test_Field");
+				
+				AddEmployee addEmployee = new AddEmployee(driver);
+				addEmployee.DrivingLicense.sendKeys(drivinglicenseNumber);
+			}
+			
+		    
 						
 		}
 	}
