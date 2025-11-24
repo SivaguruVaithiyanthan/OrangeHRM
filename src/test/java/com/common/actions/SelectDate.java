@@ -18,7 +18,7 @@ public class SelectDate extends base
 		datePickerinput.click();
 		
 		IstodayDate = LocalDate.now(); //get the local Date
-		LocalDate givenInputDate = LocalDate.of(Integer.parseInt(Date)); // Converting given date into Date Format.
+		LocalDate givenInputDate = LocalDate.parse(Date); // Converting given date into Date Format.
 		
 		YearMonth givenMonthAndDate = date(String.valueOf(givenInputDate.getYear()) , String.valueOf(givenInputDate.getMonthValue()));
 		YearMonth currentMonthAndDate = date(String.valueOf(IstodayDate.getYear()) , String.valueOf(IstodayDate.getMonthValue()));
