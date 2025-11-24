@@ -1,6 +1,7 @@
 package com.common.actions;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -29,10 +30,9 @@ public class SelectDate extends base
 		
 		IstodayDate = LocalDate.now();
 		LocalDate givenInputDate = LocalDate.of(Integer.parseInt(targetYear), Integer.parseInt(targetMonth), Integer.parseInt(targetDate));
-		
-		int yearDifferences = IstodayDate.getYear() - givenInputDate.getYear();
-		
-		isYearGreaterOrLower(givenInputDate.getYear());
+				
+		boolean Isvalue = isYearGreaterOrLower(givenInputDate.getYear());	
+		YearMonth givenYearAndMonth = YearMonth.of(Integer.parseInt(targetYear), Integer.parseInt(targetMonth));
 					
 	}
 	
