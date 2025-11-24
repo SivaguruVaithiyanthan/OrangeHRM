@@ -12,6 +12,7 @@ import com.pages.base.base;
 import com.pages.locators.loginPage;
 import com.pages.locators.AddEmployee;
 import com.pages.utilities.ExcelUtilities;
+import com.common.actions.*;
 
 public class AddEmployeeDetails extends base
 {
@@ -20,7 +21,7 @@ public class AddEmployeeDetails extends base
 	
 	
 	
-	public void AddEmployee() 
+	public void AddEmployee() throws InterruptedException 
 	{
 		loginObjects = new loginPage(driver);
 		List<Map<String, String>> valuesOfReadedExcel = ExcelUtilities.ReadExcelData("CommonAccess.xlsx","AddEmployee");
@@ -59,6 +60,9 @@ public class AddEmployeeDetails extends base
 				
 				AddEmployee addEmployee = new AddEmployee(driver);
 				addEmployee.DrivingLicense.sendKeys(drivinglicenseNumber);
+				
+				SelectDate select = new SelectDate();
+				SelectDate.selectGivenDate("//label[contains(text(),'License Expiry Date')]/parent::div/following-sibling::div//input[contains(@class,'oxd-input')]", dateofBirth);
 			}
 			
 		    
