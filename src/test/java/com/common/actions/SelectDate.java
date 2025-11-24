@@ -1,44 +1,41 @@
 package com.common.actions;
-
 import java.time.LocalDate;
 import java.time.YearMonth;
-
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import com.pages.base.base;
+import com.common.actions.*;
 
 public class SelectDate extends base
 {
 	public static LocalDate IstodayDate;
-	
-	public static void Main(String [] args)
+			
+	public static void selectGivenDate(String Element,String Date) throws InterruptedException
 	{
-		
-	}
-	
-	
-	public void selectGivenDate(String targetYear , String targetMonth , String targetDate)
-	{
-		
-		WebElement frame = driver.findElement(By.className("demo-frame"));
-		
-		driver.switchTo().frame(frame);
-		
-		WebElement datePickerinput = driver.findElement(By.className("hasDatepicker"));
+			
+		WebElement datePickerinput = driver.findElement(By.xpath(Element));
 		datePickerinput.click();
 		
-		IstodayDate = LocalDate.now();
-		LocalDate givenInputDate = LocalDate.of(Integer.parseInt(targetYear), Integer.parseInt(targetMonth), Integer.parseInt(targetDate));
-				
-		boolean Isvalue = isYearGreaterOrLower(givenInputDate.getYear());	
-		YearMonth givenYearAndMonth = YearMonth.of(Integer.parseInt(targetYear), Integer.parseInt(targetMonth));
-					
+		IstodayDate = LocalDate.now(); //get the local Date
+		LocalDate givenInputDate = LocalDate.parse(Date); //Converting given date into Date Format.
+		
+		YearMonth givenMonthAndDate = date(String.valueOf(givenInputDate.getYear()) , String.valueOf(givenInputDate.getMonthValue()));
+		YearMonth currentMonthAndDate = date(String.valueOf(IstodayDate.getYear()) , String.valueOf(IstodayDate.getMonthValue()));
+
+		long monthsBetween = ChronoUnit.MONTHS.between(givenMonthAndDate, currentMonthAndDate);
+		System.out.println("The Differences Between Month : " + monthsBetween);
+		
+		DateTimeFormatter datetime = DateTimeFormatter.ofPattern("yyyy-dd-mm");
+		String dateIs = givenInputDate.format(datetime);
+		
+		driver.findElement(By.xpath(Element)).sendKeys(dateIs);
 	}
 	
-	public static boolean isYearGreaterOrLower(int givenInputDate)
+	public static boolean isYearGreaterOrLower(int givenInputDateYear)
 	{
-		if(givenInputDate > IstodayDate.getYear())
+		if(givenInputDateYear > IstodayDate.getYear())
 		{
 			return true;
 		}
@@ -47,4 +44,9 @@ public class SelectDate extends base
 			return false;
 		}
 	}
+	
+    public static YearMonth date (String Year , String Month)
+    {
+        return YearMonth.of(Integer.parseInt(Year), Integer.parseInt(Month));
+    }
 }

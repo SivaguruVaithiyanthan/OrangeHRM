@@ -10,7 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.pages.base.base;
 import com.pages.locators.loginPage;
+import com.pages.locators.AddEmployee;
 import com.pages.utilities.ExcelUtilities;
+import com.common.actions.*;
 
 public class AddEmployeeDetails extends base
 {
@@ -19,7 +21,7 @@ public class AddEmployeeDetails extends base
 	
 	
 	
-	public void AddEmployee() 
+	public void AddEmployee() throws InterruptedException 
 	{
 		loginObjects = new loginPage(driver);
 		List<Map<String, String>> valuesOfReadedExcel = ExcelUtilities.ReadExcelData("CommonAccess.xlsx","AddEmployee");
@@ -29,7 +31,8 @@ public class AddEmployeeDetails extends base
 		wait.until(ExpectedConditions.elementToBeClickable(loginObjects.navMenuPIM)).click();
 		wait.until(ExpectedConditions.elementToBeClickable(loginObjects.addEmployee)).click();
 
-		for (Map<String, String> Values : valuesOfReadedExcel) {
+		for (Map<String, String> Values : valuesOfReadedExcel)
+		{
 			wait.until(ExpectedConditions.visibilityOfElementLocated((By) loginObjects.firstName));
 
 			String firstName = Values.get("FirstName");
@@ -45,7 +48,28 @@ public class AddEmployeeDetails extends base
 			
 			List<Map<String, String>> valuesOfReadedExcelAddDetails = ExcelUtilities.ReadExcelData("CommonAccess.xlsx","AddEmployeeDetails");
 			
+<<<<<<< HEAD
 			
+=======
+			for(Map<String, String> values : valuesOfReadedExcelAddDetails)
+			{
+				String drivinglicenseNumber = values.get("DriverLicenseNumber");
+				String nationality =          values.get("Nationality");
+				String maritalStatus =        values.get("MaritalStatus");
+				String dateofBirth =          values.get("DateofBirth");
+				String gender      =          values.get("Gender");
+				String bloodtype      =       values.get("BloodType");
+				String testField      =       values.get("Test_Field");
+				
+				AddEmployee addEmployee = new AddEmployee(driver);
+				addEmployee.DrivingLicense.sendKeys(drivinglicenseNumber);
+				
+				SelectDate select = new SelectDate();
+				SelectDate.selectGivenDate("//label[contains(text(),'License Expiry Date')]/parent::div/following-sibling::div//input[contains(@class,'oxd-input')]", dateofBirth);
+			}
+			
+		    
+>>>>>>> 2dca039e346ddf06c0e016bf2bc9cf0ba24d6b13
 						
 		}
 	}
