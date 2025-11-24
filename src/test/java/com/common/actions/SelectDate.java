@@ -1,4 +1,5 @@
 package com.common.actions;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +19,10 @@ public class SelectDate extends base
 			
 		WebElement datePickerinput = driver.findElement(By.xpath(Element));
 		datePickerinput.click();
-
+		
+		DateTimeFormatter datetimeformat = DateTimeFormatter.ofPattern("M/d/yyyy");
+		LocalDate dateis = LocalDate.parse(Date,datetimeformat);
+		
 		IstodayDate = LocalDate.now(); //get the local Date
 		LocalDate givenInputDate = LocalDate.parse(Date); //Converting given date into Date Format.
 		
@@ -28,8 +32,8 @@ public class SelectDate extends base
 		long monthsBetween = ChronoUnit.MONTHS.between(givenMonthAndDate, currentMonthAndDate);
 		System.out.println("The Differences Between Month : " + monthsBetween);
 		
-		DateTimeFormatter datetime = DateTimeFormatter.ofPattern("yyyy-dd-mm");
-		String dateIs = givenInputDate.format(datetime);
+		//DateTimeFormatter datetime = DateTimeFormatter.ofPattern("yyyy-dd-mm");
+		//String dateIs = givenInputDate.format(datetime);
 		
 		driver.findElement(By.xpath(Element)).sendKeys(dateIs);
 	}
