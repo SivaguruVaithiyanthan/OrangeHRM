@@ -16,12 +16,10 @@ import com.common.actions.*;
 
 public class AddEmployeeDetails extends base
 {
-	loginPage loginObjects;
-	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+	public static loginPage loginObjects;
+	public static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 	
-	
-	
-	public void AddEmployee() throws InterruptedException 
+	public static void AddEmployee() throws InterruptedException 
 	{
 		loginObjects = new loginPage(driver);
 		List<Map<String, String>> valuesOfReadedExcel = ExcelUtilities.ReadExcelData("CommonAccess.xlsx","AddEmployee");
@@ -33,7 +31,7 @@ public class AddEmployeeDetails extends base
 
 		for (Map<String, String> Values : valuesOfReadedExcel)
 		{
-			wait.until(ExpectedConditions.visibilityOfElementLocated((By) loginObjects.firstName));
+			wait.until(ExpectedConditions.visibilityOf(loginObjects.firstName));
 
 			String firstName = Values.get("FirstName");
 			String lastName = Values.get("LastName");
@@ -48,28 +46,23 @@ public class AddEmployeeDetails extends base
 			
 			List<Map<String, String>> valuesOfReadedExcelAddDetails = ExcelUtilities.ReadExcelData("CommonAccess.xlsx","AddEmployeeDetails");
 			
-<<<<<<< HEAD
-			
-=======
 			for(Map<String, String> values : valuesOfReadedExcelAddDetails)
 			{
 				String drivinglicenseNumber = values.get("DriverLicenseNumber");
+				String ExpiryDate           = values.get("LicenseExpiryDate");
 				String nationality =          values.get("Nationality");
 				String maritalStatus =        values.get("MaritalStatus");
 				String dateofBirth =          values.get("DateofBirth");
 				String gender      =          values.get("Gender");
 				String bloodtype      =       values.get("BloodType");
-				String testField      =       values.get("Test_Field");
+				String testField      =       values.get("TestField");
 				
 				AddEmployee addEmployee = new AddEmployee(driver);
 				addEmployee.DrivingLicense.sendKeys(drivinglicenseNumber);
 				
-				SelectDate select = new SelectDate();
-				SelectDate.selectGivenDate("//label[contains(text(),'License Expiry Date')]/parent::div/following-sibling::div//input[contains(@class,'oxd-input')]", dateofBirth);
+				SelectDate.selectGivenDate("//label[contains(text(),'License Expiry Date')]/parent::div/following-sibling::div//input[contains(@class,'oxd-input')]", ExpiryDate);
 			}
 			
-		    
->>>>>>> 2dca039e346ddf06c0e016bf2bc9cf0ba24d6b13
 						
 		}
 	}

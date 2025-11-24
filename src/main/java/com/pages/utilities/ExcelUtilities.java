@@ -3,11 +3,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 
 public class ExcelUtilities 
 {
@@ -25,7 +29,8 @@ public class ExcelUtilities
 				
 				int totalRowsinDB = readDataFromSheet.getPhysicalNumberOfRows();
 				int totalColumnsinDB = readDataFromSheet.getRow(0).getPhysicalNumberOfCells();
-
+				
+				
 				for (int row = 1 ; row < totalRowsinDB ; row ++)
 				{
 					Map<String , String> dbReadedValues = new HashMap<String , String>();
@@ -33,8 +38,30 @@ public class ExcelUtilities
 					for (int columns = 0 ; columns < totalColumnsinDB ; columns ++ )
 					{
 						String key = readDataFromSheet.getRow(0).getCell(columns).getStringCellValue();
-						String Value = readDataFromSheet.getRow(row).getCell(columns).getStringCellValue();
+						XSSFCell cell = readDataFromSheet.getRow(row).getCell(columns);
+						String Value = "";
 						
+//						if(DateUtil.isCellDateFormatted(cell))
+//						{
+//							Date date = cell.getDateCellValue();
+//							SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-mm");
+//							Value = formatter.format(date);
+//						}
+
+							switch(cell.getCellType())
+							{
+							case STRING :
+								Value = cell.getStringCellValue();
+								break;
+								
+							case NUMERIC :
+								Value = String.valueOf((int) cell.getNumericCellValue());
+								break;
+								
+							default:
+								break;
+							}
+												
 						dbReadedValues.put(key, Value);
 					}
 					

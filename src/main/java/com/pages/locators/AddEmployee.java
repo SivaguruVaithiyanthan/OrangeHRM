@@ -15,6 +15,9 @@ public class AddEmployee
 		PageFactory.initElements(driver, this);
 	}
 	
+	@FindBy(xpath = "//label[contains(text(),'License Expiry Date')]/parent::div/following-sibling::div//input[contains(@class,'oxd-input')]")
+	public WebElement LicenseExpiryDate;
+	
 	@FindBy(xpath = "//label[contains(text(),'Driver')]/parent::div/following-sibling::div//input[contains(@class,'oxd-input')]")
 	public WebElement DrivingLicense;
 	

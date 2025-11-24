@@ -40,7 +40,7 @@ public class logintest extends base {
 
 	@BeforeTest()
 	private static List<Map<String, String>> dataBaseOutPut() {
-		List<Map<String, String>> valuesOfDB = ExcelUtilities.ReadExcelData("Loginpasswords.xlsx","LoginPageCredentials");
+ 		List<Map<String, String>> valuesOfDB = ExcelUtilities.ReadExcelData("Loginpasswords.xlsx","LoginPageCredentials");
 		return valuesOfDB;
 	}
 
@@ -58,13 +58,22 @@ public class logintest extends base {
 			String passWord = Values.get("passWord");
 			loginObjects.LoginValidation(userName, passWord);
 
-			if (!checkValidCredentials(driver)) {
+			if (!checkValidCredentials(driver)) 
+			{
 				DasboardValidation();
-			} else {
+			} 
+			else 
+			{
 				invalidCount++;
 				System.out.println("invalid Credentials.." + invalidCount);
 			}
 		}
+	}
+	
+	@Test(priority = 2 , dependsOnMethods = "ValidLogin")
+	public void validateAddEmployee() throws InterruptedException
+	{
+		AddEmployeeDetails.AddEmployee();
 	}
 
 	public void DasboardValidation() throws InterruptedException {
@@ -76,13 +85,13 @@ public class logintest extends base {
 
 			WebElement navMenu = driver.findElement(By.xpath("//ul[contains(@class,'oxd-main-menu')]"));
 			List<WebElement> navigationSubMenus = navMenu.findElements(By.tagName("li"));
-			for (WebElement element : navigationSubMenus) {
+			for (WebElement element : navigationSubMenus) 
+			{
 				System.out.println("Navigation Menus : " + element.getText().trim());
 			}
 
 			for (int i = 0; i < navigationSubMenus.size(); i++) {
-				List<WebElement> navigation = driver
-						.findElements(By.xpath("//ul[contains(@class,'oxd-main-menu')]//li"));
+				List<WebElement> navigation = driver.findElements(By.xpath("//ul[contains(@class,'oxd-main-menu')]//li"));
 				WebElement nowtMenu = navigation.get(i);
 				String menuName = nowtMenu.getText().trim();
 				System.out.println("Current Nav Menu is  : " + menuName);
@@ -97,14 +106,17 @@ public class logintest extends base {
 
 	}
 
-	public boolean checkValidCredentials(WebDriver driver) {
+	public boolean checkValidCredentials(WebDriver driver)
+    {
 		boolean invalidCredToast = false;
-		try {
+		try 
+		{
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-			WebElement toast = wait
-					.until(ExpectedConditions.visibilityOfElementLocated((loginObjects.invalidToastMessage)));
+			WebElement toast = wait.until(ExpectedConditions.visibilityOfElementLocated((loginObjects.invalidToastMessage)));
 			invalidCredToast = toast.isDisplayed();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) 
+		{
 			invalidCredToast = false;
 		}
 		return invalidCredToast;

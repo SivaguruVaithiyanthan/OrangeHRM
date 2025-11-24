@@ -5,6 +5,7 @@
     <classes>
       <class name="com.pages.test.logintest">
         <methods>
+          <include name="validateAddEmployee"/>
           <include name="ValidLogin"/>
           <include name="beforeMethod"/>
           <include name="dataBaseOutPut"/>
