@@ -23,6 +23,8 @@ public class SelectDate extends base
 		DateTimeFormatter datetimeformat = DateTimeFormatter.ofPattern("M/d/yyyy");
 		LocalDate dateis = LocalDate.parse(Date,datetimeformat);
 		
+		DateTimeFormatter datetimeformated = DateTimeFormatter.ofPattern("M/d/yyyy");
+		
 		IstodayDate = LocalDate.now(); //get the local Date
 		LocalDate givenInputDate = LocalDate.parse(Date); //Converting given date into Date Format.
 		
@@ -35,7 +37,7 @@ public class SelectDate extends base
 		//DateTimeFormatter datetime = DateTimeFormatter.ofPattern("yyyy-dd-mm");
 		//String dateIs = givenInputDate.format(datetime);
 		
-		driver.findElement(By.xpath(Element)).sendKeys(dateIs);
+		driver.findElement(By.xpath(Element)).sendKeys();
 	}
 	
 	public static boolean isYearGreaterOrLower(int givenInputDateYear)
